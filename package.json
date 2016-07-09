@@ -1,0 +1,21 @@
+{
+  "name": "postbank-banking",
+  "version": "0.1.0",
+  "description": "Postbank Banking is an app that gives an overview about the transactions after parsing the .csv files.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "banking",
+    "postbank",
+    "transactions",
+    "app"
+  ],
+  "author": "Timo Denk",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "fs": "0.0.2"
+  }
+}

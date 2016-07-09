@@ -1,0 +1,24 @@
+{
+  "name": "Postbank-Banking",
+  "authors": [
+    "Timo Denk <simssosdenk@googlemail.com>"
+  ],
+  "description": "Postbank Banking is an app that gives an overview about the transactions after parsing the .csv files.",
+  "main": "index.html",
+  "keywords": [
+    "banking",
+    "postbank",
+    "transactions",
+    "app"
+  ],
+  "license": "MIT",
+  "homepage": "http://timodenk.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
