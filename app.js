@@ -24,11 +24,9 @@ app.post('/api/*', function(req, res, next) {
 	next();
 });
 
+require('./api/transactions')(app, fileParser);
+
 const port = 8080;
 app.listen(port);
-
-fileParser.getAllTransactions(function(transactions) {
-	console.log(transactions);
-});
 
 console.log('listening on port ' + port);

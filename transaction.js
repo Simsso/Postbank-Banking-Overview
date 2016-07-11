@@ -34,8 +34,4 @@ Transaction.prototype.parseString = function(string) {
 	this['Balance'] = Transaction.parseAmount(parts[7]);
 }
 
-Transaction.prototype.toJSON = function() {
-	return JSON.stringify(this);
-}
-
 module.exports = Transaction;

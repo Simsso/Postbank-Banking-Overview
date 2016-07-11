@@ -15,6 +15,7 @@ var fileParser = (function() {
 	}
 
 	const newFilesPath = 'add';
+	const headerLine = '"Buchungstag";"Wertstellung";"Umsatzart";"Buchungsdetails";"Auftraggeber";"Empfänger";"Betrag (€)";"Saldo (€)"';
 
 	function init() {
 		createDirectoryIfItDoesntExist(newFilesPath);
@@ -43,7 +44,7 @@ var fileParser = (function() {
 			var headerFound = false, transactions = [];
 			for (var i = 0; i < lines.length; i++) {
 				var line = lines[i];
-				if (line === '"Buchungstag";"Wertstellung";"Umsatzart";"Buchungsdetails";"Auftraggeber";"Empfänger";"Betrag (€)";"Saldo (€)"') {
+				if (line === headerLine) {
 					headerFound = true;
 					continue;
 				}
