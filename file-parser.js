@@ -2,23 +2,14 @@ var fileParser = (function() {
 	const fs = require('fs');
 	const windows1252 = require('windows-1252');
 	const path = require('path');
+	const util = require('./util');
 	const Transaction = require('./transaction');
-
-	// creates a directory synchronously if it doesn't exist yet
-	// doesn't work it the path is e.g. "foo/bar" and the directory "foo" doesn't exist
-	function createDirectoryIfItDoesntExist(path) {
-		var dir = './' + path;
-
-		if (!fs.existsSync(dir)){
-		    fs.mkdirSync(dir);
-		}
-	}
 
 	const newFilesPath = 'add';
 	const headerLine = '"Buchungstag";"Wertstellung";"Umsatzart";"Buchungsdetails";"Auftraggeber";"Empfänger";"Betrag (€)";"Saldo (€)"';
 
 	function init() {
-		createDirectoryIfItDoesntExist(newFilesPath);
+		util.createDirectoryIfItDoesntExist(newFilesPath);
 	}
 
 	// @para callback string[] file names

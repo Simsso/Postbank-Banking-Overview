@@ -1,3 +1,9 @@
+const util = require('./util');
+
+function convertDate(string) {
+	return util.dateToMySQLString(util.parseDateString(string, 'dd.mm.yyyy'));
+}
+
 var Transaction = function() {
 
 };
@@ -24,8 +30,8 @@ Transaction.prototype.parseString = function(string) {
 		return new Error("Invalid string passed");
 	}
 
-	this['DateOfBookkeepingEntry'] = parts[0];
-	this['ValueDate'] = parts[1];
+	this['DateOfBookkeepingEntry'] = convertDate(parts[0]);
+	this['ValueDate'] = convertDate(parts[1]);
 	this['ExchangeType'] = parts[2];
 	this['Details'] = parts[3];
 	this['Applicant'] = parts[4];

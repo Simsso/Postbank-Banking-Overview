@@ -12,7 +12,7 @@
     "app"
   ],
   "license": "MIT",
-  "homepage": "http://timodenk.com",
+  "homepage": "http://www.timodenk.com",
   "private": true,
   "ignore": [
     "**/.*",
@@ -20,5 +20,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "react": "^15.2.1",
+    "babel": "*",
+    "bootstrap": "^3.3.6"
+  }
 }
