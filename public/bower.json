@@ -1,9 +1,9 @@
 {
-  "name": "Postbank-Banking",
+  "name": "Postbank-Banking-Overview",
   "authors": [
-    "Timo Denk <simssosdenk@googlemail.com>"
+    "Timo Denk <github@timodenk.com>"
   ],
-  "description": "Postbank Banking is an app that gives an overview about the transactions after parsing the .csv files.",
+  "description": "Postbank Banking Overview is an app that gives an overview about the transactions after parsing the .csv files.",
   "main": "index.html",
   "keywords": [
     "banking",
