@@ -24,6 +24,7 @@
   "dependencies": {
     "react": "^15.2.1",
     "babel": "*",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "moment": "^2.14.1"
   }
 }

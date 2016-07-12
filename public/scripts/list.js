@@ -5,6 +5,13 @@ function formatCurrency(val) {
 	return val.formatMoney();
 }
 
+function getCurrentMonth() {
+	return {
+		from: (new Date(moment().startOf('month'))).toMySQLString(),
+		to: (new Date(moment().endOf('month'))).toMySQLString()
+	};
+}
+
 var Transaction = React.createClass({
 	getInitialState: function() {
 		return { 
@@ -71,14 +78,17 @@ var TransactionList = React.createClass({
 });
 
 var TransactionListWrapper = React.createClass({
-	getCurrentMonth: function() {
-		var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-		var firstDay = new Date(y, m, 1);
-		var lastDay = new Date(y, m + 1, 0);
-		return {
-			from: firstDay.toMySQLString(),
-			to: lastDay.toMySQLString()
-		};
+	previousMonth: function() {
+		this.setStateRecursively({ time: {
+			from: (new Date(moment(this.state.time.from).subtract(1, 'month'))).toMySQLString(),
+			to: (new Date(moment(this.state.time.to).subtract(1, 'month').endOf('month'))).toMySQLString()
+		}})
+	},
+	nextMonth: function() {
+		this.setStateRecursively({ time: {
+			from: (new Date(moment(this.state.time.from).add(1, 'month'))).toMySQLString(),
+			to: (new Date(moment(this.state.time.to).add(1, 'month').endOf('month'))).toMySQLString()
+		}})
 	},
 	withinDateRange: function(date) {
 		var dateFrom = new Date(this.state.time.from), dateTo = new Date(this.state.time.to), x = new Date(date); 
@@ -125,7 +135,7 @@ var TransactionListWrapper = React.createClass({
 	getInitialState: function() {
 		return { 
 			data: [],
-			time: this.getCurrentMonth()
+			time: getCurrentMonth()
 		};
 	},
 	componentDidMount: function() {
@@ -169,8 +179,20 @@ var TransactionListWrapper = React.createClass({
 		return (
 			<div className="transaction-list-wrapper">
 				<h2>List of all Transactions</h2>
-				From: <input type="date" value={this.state.time.from} onChange={this.updateDateFrom} /><br />
-				To: <input type="date" value={this.state.time.to} onChange={this.updateDateTo} /><br />
+				<div className="row">
+					<div className="col-xs-2">
+						<input type="button" className="form-control btn" value="Previous" onClick={this.previousMonth} />
+					</div>
+					<div className="col-xs-4">
+						From<input type="date" className="form-control" value={this.state.time.from} onChange={this.updateDateFrom} />
+					</div>
+					<div className="col-xs-4">
+						To<input type="date" className="form-control" value={this.state.time.to} onChange={this.updateDateTo} /><br />
+					</div>
+					<div className="col-xs-2">
+						<input type="button" className="form-control btn" value="Next" onClick={this.nextMonth} />
+					</div>
+				</div>
 				<input type="button" className="btn btn-primary" onClick={this.fetch} value="Fetch data" />
 				<div class="row">
 					<div class="col-sm-6">
@@ -186,7 +208,18 @@ var TransactionListWrapper = React.createClass({
 	}
 });
 
+var App = React.createClass({
+	render: function() {
+		return (
+			<div className="container">
+				<h1>Postbank Banking Overview</h1>
+  				<TransactionListWrapper url="/api/transactions" />
+			</div>
+		);
+	}
+});
+
 ReactDOM.render(
-  <TransactionListWrapper url="/api/transactions" />,
-  document.getElementById('content')
+	<App />,
+ 	document.getElementById('content')
 );
