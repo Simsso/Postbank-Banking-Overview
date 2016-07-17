@@ -4,7 +4,14 @@ function convertDate(string) {
 	return util.dateToMySQLString(util.parseDateString(string, 'dd.mm.yyyy'));
 }
 
-var Transaction = function() {
+var Transaction = function(obj) {
+	if (obj) {
+		for (attr in obj) {
+			if (Transaction.prototype[attr] === null) {
+				this[attr] = obj[attr];
+			}
+		}
+	}
 
 };
 
@@ -38,6 +45,15 @@ Transaction.prototype.parseString = function(string) {
 	this['Recipient'] = parts[5];
 	this['Amount'] = Transaction.parseAmount(parts[6]);
 	this['Balance'] = Transaction.parseAmount(parts[7]);
+}
+
+Transaction.prototype.equals = function(transaction) {
+	for (attr in transaction) {
+		if (this[attr] !== transaction[attr]) {
+			return false;
+		}
+	}
+	return true;
 }
 
 module.exports = Transaction;

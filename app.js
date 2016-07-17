@@ -6,6 +6,7 @@ var app = express();
 // modules
 const dataBase = require('./data-base');
 const fileParser = require('./file-parser');
+const db = require('./data-base');
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -24,7 +25,7 @@ app.post('/api/*', function(req, res, next) {
 	next();
 });
 
-require('./api/transactions')(app, fileParser);
+require('./api/transactions')(app, fileParser, db);
 
 const port = 8080;
 app.listen(port);
