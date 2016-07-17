@@ -8,22 +8,17 @@ var dataBase = (function() {
 
 	function saveTransactions(transactions, removeDuplicates, callback) {
 		loadTransactions(function(savedTransactions) {
-			for (var i = 0; i < savedTransactions.length; i++) {
-				var equalTransactionSaved = false;
-				for (var j = 0; j < transactions.length; j++) {
-					if (savedTransactions[i].equals(transactions[j])) {
-						equalTransactionSaved = true;
+			Array.prototype.push.apply(transactions, savedTransactions);
+			for (var i = 0; i < transactions.length; i++) {
+				var a = transactions[i];
+				for (var j = i + 1; j < transactions.length; j++) {
+					var b = transactions[j];
+					if (a.equals(b)) {
+						transactions.splice(j, 1);
+						j--;
 					}
 				}
-				if (equalTransactionSaved) {
-					savedTransactions.splice(i, 1);
-					i--;
-				}
-				else {
-					console.log("New transaction added");
-				}
 			}
-			Array.prototype.push.apply(transactions, savedTransactions);
 			fs.writeFile(path.join(dataBasePath, dataBaseTransactionsFile), JSON.stringify(transactions), function(err) {
 				callback(err, transactions);
 			});
@@ -33,13 +28,19 @@ var dataBase = (function() {
 	function loadTransactions(callback) {
 		fs.readFile(path.join(dataBasePath, dataBaseTransactionsFile), 'utf-8', function(err, content) {
 			if (err) {
-				return [];
+				callback([]);
 			}
-			var arr = JSON.parse(content), transactions = [];
-			for (var i = 0; i < arr.length; i++) {
-				transactions.push(new Transaction(arr[i]));
+			try {
+				var arr = JSON.parse(content), transactions = [];
+				for (var i = 0; i < arr.length; i++) {
+					transactions.push(new Transaction(arr[i]));
+				}
+				callback(transactions);
 			}
-			callback(transactions);
+			catch (e) {
+				console.log(e);
+				callback([]);
+			}
 		});
 	}
 	return {

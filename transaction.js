@@ -45,7 +45,7 @@ Transaction.prototype.parseString = function(string) {
 	this['Recipient'] = parts[5];
 	this['Amount'] = Transaction.parseAmount(parts[6]);
 	this['Balance'] = Transaction.parseAmount(parts[7]);
-}
+};
 
 Transaction.prototype.equals = function(transaction) {
 	for (attr in transaction) {
@@ -54,6 +54,44 @@ Transaction.prototype.equals = function(transaction) {
 		}
 	}
 	return true;
-}
+};
+
+Transaction.prototype.dateBefore = function(transaction) {
+	var aSplit = this['DateOfBookkeepingEntry'].split('-'), bSplit = transaction['DateOfBookkeepingEntry'].split('-');
+	if (aSplit.length !== bSplit.length || aSplit.length !== 3) {
+		throw new Error("Date parsing failed");
+	}
+
+	for (var i = 0; i < 3; i++) {
+		aSplit[i] = parseInt(aSplit[i]);
+		bSplit[i] = parseInt(bSplit[i]);
+	}
+
+	// compare year
+	if (aSplit[0] > bSplit[0]) {
+		return false;
+	}
+	if (aSplit[0] < bSplit[0]) {
+		return true;
+	}
+
+	// compare month (year equal)
+	if (aSplit[1] > bSplit[1]) {
+		return false;
+	}
+	if (aSplit[1] < bSplit[1]) {
+		return true;
+	}
+
+	// compare day (year and month equal)
+	if (aSplit[2] > bSplit[2]) {
+		return false;
+	}
+	if (aSplit[2] < bSplit[2]) {
+		return true;
+	}
+
+	return true; // equal
+};
 
 module.exports = Transaction;
