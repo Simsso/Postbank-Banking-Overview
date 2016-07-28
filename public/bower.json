@@ -22,9 +22,6 @@
     "tests"
   ],
   "dependencies": {
-    "react": "^15.2.1",
-    "babel": "*",
-    "bootstrap": "^3.3.6",
-    "moment": "^2.14.1"
+    "date-fns": "^1.3.0"
   }
 }

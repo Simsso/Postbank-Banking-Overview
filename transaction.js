@@ -12,7 +12,6 @@ var Transaction = function(obj) {
 			}
 		}
 	}
-
 };
 
 Transaction.parseAmount = function(amount) {
@@ -20,7 +19,7 @@ Transaction.parseAmount = function(amount) {
 	amount = amount.replace('.', ''); // remove dot which marks thousands (e.g. "1.235,00€")
 	amount = amount.replace(',', '.'); // replace comma with dot for parsing
 	return parseFloat(amount); // convert into a number
-}
+};
 
 Transaction.prototype['DateOfBookkeepingEntry'] = null;
 Transaction.prototype['ValueDate'] = null;
@@ -68,28 +67,16 @@ Transaction.prototype.dateBefore = function(transaction) {
 	}
 
 	// compare year
-	if (aSplit[0] > bSplit[0]) {
-		return false;
-	}
-	if (aSplit[0] < bSplit[0]) {
-		return true;
-	}
+	if (aSplit[0] > bSplit[0]) { return false; }
+	if (aSplit[0] < bSplit[0]) { return true; }
 
 	// compare month (year equal)
-	if (aSplit[1] > bSplit[1]) {
-		return false;
-	}
-	if (aSplit[1] < bSplit[1]) {
-		return true;
-	}
+	if (aSplit[1] > bSplit[1]) { return false; }
+	if (aSplit[1] < bSplit[1]) { return true; }
 
 	// compare day (year and month equal)
-	if (aSplit[2] > bSplit[2]) {
-		return false;
-	}
-	if (aSplit[2] < bSplit[2]) {
-		return true;
-	}
+	if (aSplit[2] > bSplit[2]) { return false; }
+	if (aSplit[2] < bSplit[2]) { return true; }
 
 	return true; // equal
 };

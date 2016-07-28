@@ -1,5 +1,5 @@
-function pad(num, size) {
-    var s = num + "";
+Number.prototype.pad = function(size) {
+    var s = this + "";
     while (s.length < size) s = "0" + s;
     return s;
 }
@@ -18,5 +18,5 @@ Number.prototype.formatMoney = function(c, d, t) {
 // Date object to MySQL date string
 // @return MySQL date string (yyyy-mm-dd)
 Date.prototype.toMySQLString = function() {
-	return pad(this.getFullYear(), 4) + '-' + pad(this.getMonth() + 1, 2) + '-' + pad(this.getDate(), 2); // month is zero based
-}
+	return this.getFullYear().pad(4) + '-' + (this.getMonth() + 1).pad(2) + '-' + this.getDate().pad(2); // month is zero based
+};

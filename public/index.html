@@ -3,20 +3,49 @@
   <head>
     <meta charset="utf-8" />
     <title>Postbank Banking Overview</title>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
-    <script src="bower_components/react/react.min.js"></script>
-    <script src="bower_components/react/react-dom.min.js"></script>
-    <script src="bower_components/babel/browser.min.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style/main.css">
   </head>
   <body>
-    <div id="content"></div>
-    <script src="bower_components/moment/min/moment.min.js"></script>
-    <script src="scripts/extensions.js"></script>
-    <script type="text/babel" src="scripts/list.js"></script>
+    <nav>
+      <div class="container">
+        <div class="logo"><img src="assets/img/postbank-logo.svg" alt="Denk Development" /></div>
+        <div class="app-name">Banking Overview</div>
+      </div>
+    </nav>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-lg-5 col-lg-offset-1">
+            <canvas id="balance-chart" width="600" height="400"></canvas>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container table-responsive-wrapper">
+        <table id="transactions-table" class="table table-hover">
+          <thead>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Applicant</th>
+            <th>Recipient</th>
+            <th>Amount [&euro;]</th>
+            <th>Balance [&euro;]</th>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+    <footer>
+    </footer>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+    <!--<script src="node_modules/date-fns/index.js"></script>-->
+    <script src="js/extensions.js"></script>
+    <script src="js/modules/api.js"></script>
+    <script src="js/modules/ui.js"></script>
+    <script src="js/modules/chart.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
