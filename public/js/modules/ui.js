@@ -35,13 +35,20 @@ var ui = (function(jQuery) {
 
 		for (var i = 0; i < data.length; i++) {
 			var transaction = data[i];
-			tableBodyHtml += '<tr>' + 
+			tableBodyHtml += '<tr data-toggle="collapse" data-target="#main-table-row-expand-' + i + '" class="accordion-toggle">' + 
 				'<td>' + dateFns.format((new Date(transaction['DateOfBookkeepingEntry'])), 'DD. MMM YYYY') + '</td>' +
 				'<td>' + transaction['ExchangeType'] + '</td>' +
 				'<td>' + transaction['Applicant'] + '</td>' +
 				'<td>' + transaction['Recipient'] + '</td>' +
 				'<td>' + transaction['Amount'].formatMoney() + '</td>' +
 				'<td>' + transaction['Balance'].formatMoney() + '</td>' +
+				'</tr>' + 
+				'<tr>'  + 
+    			'<td colspan="6" class="hidden-row">' + 
+        		'<div class="accordion-body collapse" id="main-table-row-expand-' + i + '">' + 
+        		'<div class="hidden-content"><span class="details">Details</span>' + transaction['Details'] + '</div>' + 
+        		'</div>' + 
+    			'</td>' + 
 				'</tr>';
 		}
 

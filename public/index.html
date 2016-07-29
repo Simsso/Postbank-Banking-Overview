@@ -5,6 +5,8 @@
     <title>Postbank Banking Overview</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style/main.css">
+    <link rel="stylesheet" href="assets/style/bootstrap-modification.css">
+    <link rel="stylesheet" href="assets/style/hover-info.css">
   </head>
   <body>
     <nav>
@@ -14,6 +16,33 @@
       </div>
     </nav>
     <header>
+      <div class="container">
+        <div class="btn-group date-range-width-nav" role="group" aria-label="...">
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Week
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Day</a></li>
+              <li><a href="#">Week</a></li>
+              <li><a href="#">Month</a></li>
+              <li><a href="#">Year</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Lifetime</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Custom range</a></li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+        </div>
+        <span class="selected-date-range-info"><strong>Week: </strong>25.07.2016 - 31.07.2016</span>
+      </div>
+    </header>
+    <section>
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-4">
@@ -43,7 +72,7 @@
           </div>
         </div>
       </div>
-    </header>
+    </section>
     <main>
       <div class="container table-responsive-wrapper">
         <table id="transactions-table" class="table table-hover">
@@ -69,6 +98,7 @@
     </footer>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/date-fns/dist/date_fns.min.js"></script>
     <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>

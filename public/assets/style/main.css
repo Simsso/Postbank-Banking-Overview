@@ -24,9 +24,18 @@ nav .logo img {
 	height: 100%;
 }
 
+header {
+    border-bottom: 1px solid rgba(1, 1, 102, 0.36);
+}
+
+header .selected-date-range-info {
+	font-size: 16px;
+	vertical-align: middle;
+}
+
 .table > thead > tr > th {
-    border-bottom: 2px solid #DFE3E9;
-    border-right: 1px solid #DFE3E9;
+    border-bottom: 1px solid #BFC3C9;
+    /*border-right: 1px solid #DFE3E9;*/
     font-size: 12px;
     font-weight: 200;
     text-align: center;
@@ -38,9 +47,9 @@ nav .logo img {
     border-right: none;
 }
 
-.table > tbody > tr > td {
+.table > tbody > tr > td:not(.hidden-row) {
     border-top: 1px solid #DFE3E9;
-    border-right: 1px solid #DFE3E9;
+    /*border-right: 1px solid #DFE3E9;*/
     white-space: nowrap;
 }
 
@@ -52,8 +61,16 @@ nav .logo img {
 	overflow-x: auto;
 }
 
-main, header {
+main, section, header {
 	padding: 25px 0;
+}
+
+.date-range-width-nav {
+	margin-right: 25px;
+}
+
+.date-range-width-nav span.glyphicon {
+	font-size: 11px;
 }
 
 .key-number {
@@ -109,4 +126,30 @@ footer a, footer a:focus {
 footer a:hover, footer a:active {
 	color: #FFF;
 	text-decoration: none;
+}
+
+td.hidden-row {
+	padding: 0 !important;
+}
+
+td.hidden-row .hidden-content {
+	padding: 8px;
+	font-size: 12px;
+}
+
+#transactions-table tr:nth-child(even) td {
+    border: none;
+}
+
+#transactions-table tr:nth-child(odd) {
+    cursor: pointer;
+}
+
+#transactions-table tr:nth-child(even) span.details {
+    font-size: 12px;
+    font-weight: 200;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7F8FA4;
+    padding-right: 8px;
 }
