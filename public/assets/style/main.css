@@ -55,3 +55,58 @@ nav .logo img {
 main, header {
 	padding: 25px 0;
 }
+
+.key-number {
+	padding: 10px 0;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.key-number .title {
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #7F8FA4;
+}
+
+.key-number .value {
+	font-size: 30px;
+	font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+
+footer {
+	text-align: center;
+	padding: 25px;
+
+	color: white;
+	background: #36454f;
+	box-shadow: inset 0 -50px 80px rgb(37, 47, 54);
+	border-top: 1px solid rgb(37, 47, 54);
+}
+
+footer .copyright img {
+	height: 20px;
+	vertical-align: middle;
+}
+footer .legal {
+    float: right;
+}
+
+footer .timodenk {
+	float: left;
+}
+
+footer a, footer a:focus {
+	cursor: pointer;
+	color: #AAA;
+	transition: color ease-in .2s;
+	text-decoration: none;
+}
+
+footer a:hover, footer a:active {
+	color: #FFF;
+	text-decoration: none;
+}

@@ -9,15 +9,37 @@
   <body>
     <nav>
       <div class="container">
-        <div class="logo"><img src="assets/img/postbank-logo.svg" alt="Denk Development" /></div>
+        <div class="logo"><img src="assets/img/postbank-logo.svg" alt="Postbank" /></div>
         <div class="app-name">Banking Overview</div>
       </div>
     </nav>
     <header>
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-6 col-lg-5 col-lg-offset-1">
-            <canvas id="balance-chart" width="600" height="400"></canvas>
+          <div class="col-xs-12 col-sm-4">
+            <div class="key-number">
+              <div class="value" id="key-number-balance"></div>
+              <div class="title">Balance</div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="key-number">
+              <div class="value" id="key-number-volume"></div>
+              <div class="title">Transaction volume</div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="key-number">
+              <div class="value" id="key-number-surplus"></div>
+              <div class="title">Surplus</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div>
+              <canvas id="balance-chart" width="1000" height="400"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -37,11 +59,19 @@
         </table>
       </div>
     </main>
+  
     <footer>
+      <div class="copyright">
+        <a class="timodenk" href="http://timodenk.com" target="_blank">Timo Denk</a>
+        <a href="http://development.timodenk.com" target="_blank">&copy; Denk Development</a>
+        <a class="legal" href="http://timodenk.com/imprint/" target="_blank">Legal</a>
+      </div>
     </footer>
+
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/date-fns/dist/date_fns.min.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>
-    <!--<script src="node_modules/date-fns/index.js"></script>-->
     <script src="js/extensions.js"></script>
     <script src="js/modules/api.js"></script>
     <script src="js/modules/ui.js"></script>
