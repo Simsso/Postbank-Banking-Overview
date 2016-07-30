@@ -18,28 +18,28 @@
     <header>
       <div class="container">
         <div class="btn-group date-range-width-nav" role="group" aria-label="...">
-          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+          <button id="prev-date-range" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
 
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Week
+              <span class="selected-date-range-width">Month</span>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-              <li><a href="#">Day</a></li>
-              <li><a href="#">Week</a></li>
-              <li><a href="#">Month</a></li>
-              <li><a href="#">Year</a></li>
+              <li><a href="#week">Week</a></li>
+              <li><a href="#month">Month</a></li>
+              <li><a href="#quarter">Quarter</a></li>
+              <li><a href="#year">Year</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Lifetime</a></li>
+              <li><a href="#lifetime">Lifetime</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Custom range</a></li>
+              <li><a href="#custom">Custom range</a></li>
             </ul>
           </div>
 
-          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+          <button id="next-date-range" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
         </div>
-        <span class="selected-date-range-info"><strong>Week: </strong>25.07.2016 - 31.07.2016</span>
+        <span class="selected-date-range-info"><strong><span class="selected-date-range-width">Month</span> </strong><span class="selected-date-range"></span></span>
       </div>
     </header>
     <section>
@@ -102,8 +102,10 @@
     <script src="bower_components/date-fns/dist/date_fns.min.js"></script>
     <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="js/pubsub.js"></script>
     <script src="js/extensions.js"></script>
     <script src="js/modules/api.js"></script>
+    <script src="js/modules/date-range.js"></script>
     <script src="js/modules/ui.js"></script>
     <script src="js/modules/chart.js"></script>
     <script src="js/main.js"></script>

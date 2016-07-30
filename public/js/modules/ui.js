@@ -6,6 +6,10 @@ var ui = (function(jQuery) {
 		divTransactionVolumeValue = jQuery('#key-number-volume'),
 		divSurplusValue = jQuery('#key-number-surplus');
 
+	var spanSelectedDateRange = jQuery('.selected-date-range'),
+		prevDateRange = jQuery('#prev-date-range'),
+		nextDateRange = jQuery('#next-date-range');
+
 	function renderData(data) {
 		renderKeyNumbers(data);
 		renderTable(data);
@@ -36,7 +40,7 @@ var ui = (function(jQuery) {
 		for (var i = 0; i < data.length; i++) {
 			var transaction = data[i];
 			tableBodyHtml += '<tr data-toggle="collapse" data-target="#main-table-row-expand-' + i + '" class="accordion-toggle">' + 
-				'<td>' + dateFns.format((new Date(transaction['DateOfBookkeepingEntry'])), 'DD. MMM YYYY') + '</td>' +
+				'<td>' + dateFns.format((new Date(transaction['ValueDate'])), 'DD. MMM YYYY') + '</td>' +
 				'<td>' + transaction['ExchangeType'] + '</td>' +
 				'<td>' + transaction['Applicant'] + '</td>' +
 				'<td>' + transaction['Recipient'] + '</td>' +
@@ -54,6 +58,24 @@ var ui = (function(jQuery) {
 
 		tableBodyTransactions.html(tableBodyHtml);
 	}
+
+	function updateDateRange(newDateRange) {
+		// start and end available
+		if (dateRange.getDateRange().from !== null && dateRange.getDateRange().till !== null) {
+			spanSelectedDateRange.html(dateFns.format(newDateRange.from, 'DD. MMM YYYY') + ' - ' + dateFns.format(newDateRange.till, 'DD. MMM YYYY'));
+		}
+		else {
+			spanSelectedDateRange.html('');
+		}
+	}
+
+	prevDateRange.on('click', dateRange.prevDateRange);
+	nextDateRange.on('click', dateRange.nextDateRange);
+
+
+	events.on('selected-date-range-change', updateDateRange);
+
+
 	return {
 		renderData: renderData
 	};
