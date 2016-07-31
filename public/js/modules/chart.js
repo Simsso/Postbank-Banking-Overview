@@ -4,8 +4,12 @@ var chart = (function(Chart) {
 	function getDataPoints(transactions) {
 		transactions = transactions.slice(0); // create a copy for sorting
 		transactions.sort(function(a, b) {
-			if ((new Date(a['ValueDate'])).getTime() < (new Date(b['ValueDate'])).getTime()) {
+			var timeA = (new Date(a['ValueDate'])).getTime(), timeB = (new Date(b['ValueDate'])).getTime();
+			if (timeA < timeB) {
 				return -1;
+			}
+			if (timeA === timeB) {
+				return 0;
 			}
 			return 1;
 		});
@@ -17,6 +21,10 @@ var chart = (function(Chart) {
 			}, lastCoord = (dataPoints.length > 0) ? dataPoints[dataPoints.length - 1] : null;
 
 			if (dataPoints.length === 0) {
+				dataPoints.push({
+					x: coord.x,
+					y: transactions[i]['Balance'] - transactions[i]['Amount']
+				});
 				dataPoints.push(coord);
 			}
 			else {

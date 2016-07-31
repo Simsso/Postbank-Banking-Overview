@@ -88,6 +88,63 @@ Array.prototype.reverse = function() {
 	return result;
 };
 
+// returns index of max element
+Array.prototype.indexOfMax = function() {
+  if (this.length === 0) {
+    return -1;
+  }
+
+  var max = this[0];
+  var maxIndex = 0;
+
+  for (var i = 1; i < this.length; i++) {
+    if (this[i] > max) {
+      maxIndex = i;
+      max = this[i];
+    }
+  }
+
+  return maxIndex;
+}
+
+// returns index of min element
+Array.prototype.indexOfMin = function() {
+  if (this.length === 0) {
+    return -1;
+  }
+
+  var min = this[0];
+  var minIndex = 0;
+
+  for (var i = 1; i < this.length; i++) {
+    if (this[i] < min) {
+      minIndex = i;
+      min = this[i];
+    }
+  }
+
+  return minIndex;
+}
+
+// returns index of min element
+Array.prototype.indexOfClosestToZero = function() {
+  if (this.length === 0) {
+    return -1;
+  }
+
+  var closestToZero = Math.abs(this[0]);
+  var closestToZeroIndex = 0;
+
+  for (var i = 1; i < this.length; i++) {
+    if (Math.abs(this[i]) < closestToZero) {
+      closestToZeroIndex = i;
+      closestToZero = Math.abs(this[i]);
+    }
+  }
+
+  return closestToZeroIndex;
+}
+
 // converts a number to an English string
 Number.prototype.toEnglishString = function() {
   if (this.valueOf() > 12) {
