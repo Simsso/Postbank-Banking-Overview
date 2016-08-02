@@ -1,11 +1,19 @@
 (function() {
+	function mySQLDateToNonTimezonDate(string) {
+		var parts = string.split('-');
+		if (parts.length !== 3) {
+			throw new Error("Invalid string passed. Format yyyy-mm-dd required");
+		}
+		return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1,  parseInt(parts[2]), 0, 0);
+	}
+
 	var lastFetched = null;
 	api.fetchData(
 		function(data) {
 			for (var i = 0; i < data.length; i++) {
 				console.log("date saved");
-				data[i]['ValueDate'] = new Date(data[i]['ValueDate']);
-				data[i]['DateOfBookkeepingEntry'] = new Date(data[i]['DateOfBookkeepingEntry']);
+				data[i]['ValueDate'] = mySQLDateToNonTimezonDate(data[i]['ValueDate']);
+				data[i]['DateOfBookkeepingEntry'] = mySQLDateToNonTimezonDate(data[i]['DateOfBookkeepingEntry']);
 			}
 			console.log(data);
 			lastFetched = intelligentSwaping(data);
@@ -29,9 +37,6 @@
 		});
 		// data needs to be sorted descending by ['ValueDate']
 		for (var ptr = 1; ptr < data.length; ptr++) {
-			if (data[ptr - 1]['Amount'] === -34.99) {
-				console.log("here we are");
-			}
 			var sameDate = getSameDateElements(data, ptr), 
 				difference = [];
 
@@ -42,7 +47,7 @@
 			var min = difference.indexOfClosestToZero();
 			if (min + ptr !== ptr) {
 				data.swap(min + ptr, ptr);
-				console.log("swap performed");
+				console.log("swap performed (difference " + difference[min].toFixed(5) + ")");
 			}
 		}
 		return data;
@@ -88,7 +93,7 @@
 
 		var inRange = [];
 		for (var i = 0; i < transactions.length; i++) {
-			if (dateFns.isWithinRange(new Date(transactions[i]['ValueDate']), dateRange.from, dateRange.till)) {
+			if (dateFns.isWithinRange(transactions[i]['ValueDate'], dateRange.from, dateRange.till)) {
 				inRange.push(transactions[i]);
 			}
 		}

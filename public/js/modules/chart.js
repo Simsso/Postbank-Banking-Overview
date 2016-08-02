@@ -1,22 +1,29 @@
 var chart = (function(Chart) {
 	var balanceChartElement = $('#balance-chart');
 
+	function getChartScaleX() {
+		switch (dateRange.getSelectedRangeWidth()) {
+			case 'week':
+				return 'day';
+			case 'month':
+				return 'week';
+			case 'quarter':
+				return 'month';
+			case 'year':
+				return 'quarter';
+			case 'lifetime':
+				return 'year';
+			case 'custom':
+				return 'year';
+		}
+	}
+
 	function getDataPoints(transactions) {
 		transactions = transactions.slice(0); // create a copy for sorting
-		transactions.sort(function(a, b) {
-			var timeA = (new Date(a['ValueDate'])).getTime(), timeB = (new Date(b['ValueDate'])).getTime();
-			if (timeA < timeB) {
-				return -1;
-			}
-			if (timeA === timeB) {
-				return 0;
-			}
-			return 1;
-		});
 		var dataPoints = [];
 		for (var i = 0; i < transactions.length; i++) {
 			var coord = {
-				x: (new Date(transactions[i]['ValueDate'])).getTime(),
+				x: transactions[i]['ValueDate'].getTime(),
 				y: transactions[i]['Balance']
 			}, lastCoord = (dataPoints.length > 0) ? dataPoints[dataPoints.length - 1] : null;
 
@@ -94,7 +101,7 @@ var chart = (function(Chart) {
 		            xAxes: [{
 		                type: 'time',
 		                time: {
-		                    unit: dateRange.getChartScaleX()
+		                    unit: getChartScaleX()
 		                }
 		            }],
 		            yAxes: [{

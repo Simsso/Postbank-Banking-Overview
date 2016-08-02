@@ -19,7 +19,7 @@ var ui = (function(jQuery) {
 		// balance
 		var balance = 0;
 		if (data.length > 0) {
-			balance = data[0]['Balance'];
+			balance = data[data.length - 1]['Balance'];
 		}
 
 		// transaction volume and surplus
@@ -40,7 +40,7 @@ var ui = (function(jQuery) {
 		for (var i = 0; i < data.length; i++) {
 			var transaction = data[i];
 			tableBodyHtml += '<tr data-toggle="collapse" data-target="#main-table-row-expand-' + i + '" class="accordion-toggle">' + 
-				'<td>' + dateFns.format((new Date(transaction['ValueDate'])), 'DD. MMM YYYY') + '</td>' +
+				'<td>' + dateFns.format(transaction['ValueDate'], 'DD. MMM YYYY') + '</td>' +
 				'<td>' + transaction['ExchangeType'] + '</td>' +
 				'<td>' + transaction['Applicant'] + '</td>' +
 				'<td>' + transaction['Recipient'] + '</td>' +
@@ -61,8 +61,22 @@ var ui = (function(jQuery) {
 
 	function updateDateRange(newDateRange) {
 		// start and end available
+		var text = '';
 		if (dateRange.getDateRange().from !== null && dateRange.getDateRange().till !== null) {
-			spanSelectedDateRange.html(dateFns.format(newDateRange.from, 'DD. MMM YYYY') + ' - ' + dateFns.format(newDateRange.till, 'DD. MMM YYYY'));
+			switch (dateRange.getSelectedRangeWidth()) {
+				case 'month':
+					text = dateFns.format(newDateRange.from, 'MMM YYYY');
+					break;
+				case 'quarter':
+					text = dateFns.format(newDateRange.from, 'Qo YYYY')
+					break;
+				case 'year':
+					text = dateFns.format(newDateRange.from, 'YYYY');
+					break;
+				default: 
+					text = dateFns.format(newDateRange.from, 'DD. MMM YYYY') + ' - ' + dateFns.format(newDateRange.till, 'DD. MMM YYYY');
+			}
+			spanSelectedDateRange.html(text);
 		}
 		else {
 			spanSelectedDateRange.html('');

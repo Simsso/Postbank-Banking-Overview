@@ -8,7 +8,7 @@ var dateRange = (function(jQuery) {
 		'custom': 'Custom range'
 	};
 
-	var divSelectedRangeWidthName = $('.selected-date-range-width');
+	var divSelectedRangeWidthName = $('.selected-date-range-width-value');
 
 	var selectedRangeWidth = 'month';
 	var dateRange = {
@@ -80,15 +80,15 @@ var dateRange = (function(jQuery) {
 				break;
 			case 'month':
 				dateRange.from = dateFns.subMonths(dateRange.from, 1);
-				dateRange.till = dateFns.subMonths(dateRange.till, 1);
+				dateRange.till = dateFns.endOfMonth(dateFns.subMonths(dateRange.till, 1));
 				break;
 			case 'quarter':
 				dateRange.from = dateFns.subQuarters(dateRange.from, 1);
-				dateRange.till = dateFns.subQuarters(dateRange.till, 1);
+				dateRange.till = dateFns.endOfQuarter(dateFns.subQuarters(dateRange.till, 1));
 				break;
 			case 'year':
 				dateRange.from = dateFns.subYears(dateRange.from, 1);
-				dateRange.till = dateFns.subYears(dateRange.till, 1);
+				dateRange.till = dateFns.endOfYear(dateFns.subYears(dateRange.till, 1));
 				break;
 		}
 
@@ -103,42 +103,29 @@ var dateRange = (function(jQuery) {
 				break;
 			case 'month':
 				dateRange.from = dateFns.addMonths(dateRange.from, 1);
-				dateRange.till = dateFns.addMonths(dateRange.till, 1);
+				dateRange.till = dateFns.endOfMonth(dateFns.addMonths(dateRange.till, 1));
 				break;
 			case 'quarter':
 				dateRange.from = dateFns.addQuarters(dateRange.from, 1);
-				dateRange.till = dateFns.addQuarters(dateRange.till, 1);
+				dateRange.till = dateFns.endOfQuarter(dateFns.addQuarters(dateRange.till, 1));
 				break;
 			case 'year':
 				dateRange.from = dateFns.addYears(dateRange.from, 1);
-				dateRange.till = dateFns.addYears(dateRange.till, 1);
+				dateRange.till = dateFns.endOfYear(dateFns.addYears(dateRange.till, 1));
 				break;
 		}
 
 		events.emit('selected-date-range-change', dateRange);
 	}
 
-	function getChartScaleX() {
-		switch (selectedRangeWidth) {
-			case 'week':
-				return 'day';
-			case 'month':
-				return 'week';
-			case 'quarter':
-				return 'month';
-			case 'year':
-				return 'quarter';
-			case 'lifetime':
-				return 'year';
-			case 'custom':
-				return 'year';
-		}
+	function getSelectedRangeWidth() {
+		return selectedRangeWidth;
 	}
 
 	return {
 		getDateRange: getDateRange,
 		prevDateRange: prevDateRange,
 		nextDateRange: nextDateRange,
-		getChartScaleX: getChartScaleX
+		getSelectedRangeWidth: getSelectedRangeWidth
 	};
 })(jQuery);
