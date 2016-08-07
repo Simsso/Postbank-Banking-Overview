@@ -141,7 +141,7 @@ td.hidden-row .hidden-content {
     border: none;
 }
 
-#transactions-table tr:nth-child(odd) {
+#transactions-table tr:nth-child(odd) td {
     cursor: pointer;
 }
 
