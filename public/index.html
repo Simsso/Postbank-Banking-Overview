@@ -35,7 +35,7 @@
               <li role="separator" class="divider"></li>
               <li><a href="#lifetime">Lifetime</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#custom">Custom range</a></li>
+              <li class="disabled"><a href="#custom">Custom range</a></li>
             </ul>
           </div>
 
@@ -54,19 +54,19 @@
         <div class="row">
           <div class="col-xs-12 col-sm-4">
             <div class="key-number">
-              <div class="value" id="key-number-balance"></div>
+              <div class="value tnum" id="key-number-balance"></div>
               <div class="title">Balance</div>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
             <div class="key-number">
-              <div class="value" id="key-number-volume"></div>
+              <div class="value tnum" id="key-number-volume"></div>
               <div class="title">Transaction volume</div>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4">
             <div class="key-number">
-              <div class="value" id="key-number-surplus"></div>
+              <div class="value tnum" id="key-number-surplus"></div>
               <div class="title">Surplus</div>
             </div>
           </div>
@@ -88,8 +88,8 @@
             <th>Type</th>
             <th>Applicant</th>
             <th>Recipient</th>
-            <th>Amount [&euro;]</th>
-            <th>Balance [&euro;]</th>
+            <th class="text-right">Amount [&euro;]</th>
+            <th class="text-right">Balance [&euro;]</th>
           </thead>
           <tbody></tbody>
         </table>

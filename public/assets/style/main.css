@@ -38,7 +38,7 @@ header .selected-date-range-info {
     /*border-right: 1px solid #DFE3E9;*/
     font-size: 12px;
     font-weight: 200;
-    text-align: center;
+    /*text-align: center;*/
     text-transform: uppercase;
     color: #7F8FA4;
 }
@@ -154,6 +154,8 @@ td.hidden-row .hidden-content {
     padding-right: 8px;
 }
 
-#transactions-table td:nth-child(5), #transactions-table td:nth-child(6) {
-    text-align: right;
+.tnum {
+    -webkit-font-feature-settings: 'tnum';
+    -moz-font-feature-settings: 'tnum';
+    -ms-font-feature-settings: 'tnum';
 }

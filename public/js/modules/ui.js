@@ -35,17 +35,18 @@ var ui = (function(jQuery) {
 	}
 
 	function renderTable(data) {
+		data = data.reverse();
 		var tableBodyHtml = '';
 
 		for (var i = 0; i < data.length; i++) {
 			var transaction = data[i];
 			tableBodyHtml += '<tr data-toggle="collapse" data-target="#main-table-row-expand-' + i + '" class="accordion-toggle">' + 
-				'<td>' + dateFns.format(transaction['ValueDate'], 'DD. MMM YYYY') + '</td>' +
+				'<td class="tnum">' + dateFns.format(transaction['ValueDate'], 'DD. MMM YYYY') + '</td>' +
 				'<td>' + transaction['ExchangeType'] + '</td>' +
 				'<td>' + transaction['Applicant'] + '</td>' +
 				'<td>' + transaction['Recipient'] + '</td>' +
-				'<td>' + transaction['Amount'].formatMoney() + '</td>' +
-				'<td>' + transaction['Balance'].formatMoney() + '</td>' +
+				'<td class="tnum text-right">' + transaction['Amount'].formatMoney() + '</td>' +
+				'<td class="tnum text-right">' + transaction['Balance'].formatMoney() + '</td>' +
 				'</tr>' + 
 				'<tr>'  + 
     			'<td colspan="6" class="hidden-row">' + 
