@@ -12,7 +12,7 @@ var fileParser = (function() {
 		util.createDirectoryIfItDoesntExist(newFilesPath);
 	}
 
-	// @para callback string[] file names
+	// @param callback string[] file names
 	function getFileNames(callback) {
 		fs.readdir(newFilesPath, callback);
 	}

@@ -12,7 +12,7 @@ var chart = (function(Chart) {
 			case 'year':
 				return 'quarter';
 			case 'lifetime':
-				return 'year';
+				return 'month';
 			case 'custom':
 				return 'year';
 		}
