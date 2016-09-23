@@ -159,3 +159,11 @@ td.hidden-row .hidden-content {
     -moz-font-feature-settings: 'tnum';
     -ms-font-feature-settings: 'tnum';
 }
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}

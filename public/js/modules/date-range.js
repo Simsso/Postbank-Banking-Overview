@@ -72,49 +72,67 @@ var dateRange = (function(jQuery) {
 		events.emit('selected-date-range-change', dateRange);
 	}
 
-	function prevDateRange() {
+	function getPrevDateRange() {
+		var range = {
+			from: null,
+			till: null
+		};
+
 		switch (selectedRangeWidth) {
 			case 'week':
-				dateRange.from = dateFns.subWeeks(dateRange.from, 1);
-				dateRange.till = dateFns.subWeeks(dateRange.till, 1);
+				range.from = dateFns.subWeeks(dateRange.from, 1);
+				range.till = dateFns.subWeeks(dateRange.till, 1);
 				break;
 			case 'month':
-				dateRange.from = dateFns.subMonths(dateRange.from, 1);
-				dateRange.till = dateFns.endOfMonth(dateFns.subMonths(dateRange.till, 1));
+				range.from = dateFns.subMonths(dateRange.from, 1);
+				range.till = dateFns.endOfMonth(dateFns.subMonths(dateRange.till, 1));
 				break;
 			case 'quarter':
-				dateRange.from = dateFns.subQuarters(dateRange.from, 1);
-				dateRange.till = dateFns.endOfQuarter(dateFns.subQuarters(dateRange.till, 1));
+				range.from = dateFns.subQuarters(dateRange.from, 1);
+				range.till = dateFns.endOfQuarter(dateFns.subQuarters(dateRange.till, 1));
 				break;
 			case 'year':
-				dateRange.from = dateFns.subYears(dateRange.from, 1);
-				dateRange.till = dateFns.endOfYear(dateFns.subYears(dateRange.till, 1));
+				range.from = dateFns.subYears(dateRange.from, 1);
+				range.till = dateFns.endOfYear(dateFns.subYears(dateRange.till, 1));
 				break;
 		}
+		return range;
+	}
 
+	function getNextDateRange() {
+		var range = {
+			from: null,
+			till: null
+		};
+
+		switch (selectedRangeWidth) {
+			case 'week':
+				range.from = dateFns.addWeeks(dateRange.from, 1);
+				range.till = dateFns.addWeeks(dateRange.till, 1);
+				break;
+			case 'month':
+				range.from = dateFns.addMonths(dateRange.from, 1);
+				range.till = dateFns.endOfMonth(dateFns.addMonths(dateRange.till, 1));
+				break;
+			case 'quarter':
+				range.from = dateFns.addQuarters(dateRange.from, 1);
+				range.till = dateFns.endOfQuarter(dateFns.addQuarters(dateRange.till, 1));
+				break;
+			case 'year':
+				range.from = dateFns.addYears(dateRange.from, 1);
+				range.till = dateFns.endOfYear(dateFns.addYears(dateRange.till, 1));
+				break;
+		}
+		return range;
+	}
+
+	function prevDateRange() {
+		dateRange = getPrevDateRange();
 		events.emit('selected-date-range-change', dateRange);
 	}
 
 	function nextDateRange() {
-		switch (selectedRangeWidth) {
-			case 'week':
-				dateRange.from = dateFns.addWeeks(dateRange.from, 1);
-				dateRange.till = dateFns.addWeeks(dateRange.till, 1);
-				break;
-			case 'month':
-				dateRange.from = dateFns.addMonths(dateRange.from, 1);
-				dateRange.till = dateFns.endOfMonth(dateFns.addMonths(dateRange.till, 1));
-				break;
-			case 'quarter':
-				dateRange.from = dateFns.addQuarters(dateRange.from, 1);
-				dateRange.till = dateFns.endOfQuarter(dateFns.addQuarters(dateRange.till, 1));
-				break;
-			case 'year':
-				dateRange.from = dateFns.addYears(dateRange.from, 1);
-				dateRange.till = dateFns.endOfYear(dateFns.addYears(dateRange.till, 1));
-				break;
-		}
-
+		dateRange = getNextDateRange();
 		events.emit('selected-date-range-change', dateRange);
 	}
 
@@ -126,6 +144,8 @@ var dateRange = (function(jQuery) {
 		getDateRange: getDateRange,
 		prevDateRange: prevDateRange,
 		nextDateRange: nextDateRange,
+		getPrevDateRange: getPrevDateRange,
+		getNextDateRange: getNextDateRange,
 		getSelectedRangeWidth: getSelectedRangeWidth
 	};
 })(jQuery);

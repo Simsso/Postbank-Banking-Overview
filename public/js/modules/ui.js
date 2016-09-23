@@ -2,36 +2,53 @@ var ui = (function(jQuery) {
 	var tableTransactions = jQuery('#transactions-table'),
 		tableBodyTransactions = tableTransactions.find('tbody');
 
-	var divBalanceValue = jQuery('#key-number-balance'),
-		divTransactionVolumeValue = jQuery('#key-number-volume'),
-		divSurplusValue = jQuery('#key-number-surplus');
+	var divBalanceValue = jQuery('#key-number-balance .value'),
+		divTransactionVolumeValue = jQuery('#key-number-volume .value'),
+		divSurplusValue = jQuery('#key-number-surplus .value'),
+		divBalanceValueDevelopment = jQuery('#key-number-balance .development'),
+		divTransactionVolumeValueDevelopment = jQuery('#key-number-volume .development'),
+		divSurplusValueDevelopment = jQuery('#key-number-surplus .development');
 
 	var spanSelectedDateRange = jQuery('.selected-date-range'),
 		prevDateRange = jQuery('#prev-date-range'),
 		nextDateRange = jQuery('#next-date-range');
 
-	function renderData(data) {
-		renderKeyNumbers(data);
+	function renderData(data, previous) {
+		renderKeyNumbers(data, previous);
 		renderTable(data);
 	}
 
-	function renderKeyNumbers(data) {
-		// balance
-		var balance = 0;
-		if (data.length > 0) {
-			balance = data[data.length - 1]['Balance'];
+	function renderKeyNumbers(data, previous) {
+		var keyNumbers = businessLogic.getKeyNumbers(data);
+
+		if (previous.length > 0) {
+			var prevKeyNumbers = businessLogic.getKeyNumbers(previous);
+			renderKeyNumberDevelopment(keyNumbers, prevKeyNumbers);
+		}
+		else {
+			resetKeyNumberDevelopment();
 		}
 
-		// transaction volume and surplus
-		var volume = 0, surplus = 0;
-		for (var i = 0; i < data.length; i++) {
-			volume += Math.abs(data[i]['Amount']);
-			surplus += data[i]['Amount'];
-		}
+		divBalanceValue.html(keyNumbers.balance.formatMoney() + ' &euro;');
+		divTransactionVolumeValue.html(keyNumbers.volume.formatMoney() + ' &euro;');
+		divSurplusValue.html(keyNumbers.surplus.formatMoney() + ' &euro;');
+	}
 
-		divBalanceValue.html(balance.formatMoney() + ' &euro;');
-		divTransactionVolumeValue.html(volume.formatMoney() + ' &euro;');
-		divSurplusValue.html(surplus.formatMoney() + ' &euro;');
+	function renderKeyNumberDevelopment(now, prev) {
+		renderSingleKeyNumberDevelopmentField(divBalanceValueDevelopment, now.balance, prev.balance);
+		renderSingleKeyNumberDevelopmentField(divTransactionVolumeValueDevelopment, now.volume, prev.volume);
+		renderSingleKeyNumberDevelopmentField(divSurplusValueDevelopment, now.surplus, prev.surplus);
+	}
+
+	function renderSingleKeyNumberDevelopmentField(element, now, prev) {
+		element.removeClass('red').removeClass('green').addClass(((now - prev) >= 0) ? 'green' : 'red');
+		element.html((now - prev).formatMoney(undefined, undefined, undefined, true) + ' &euro;');
+	}
+
+	function resetKeyNumberDevelopment() {
+		divBalanceValueDevelopment.html('');
+		divTransactionVolumeValueDevelopment.html('');
+		divSurplusValueDevelopment.html('');
 	}
 
 	function renderTable(data) {

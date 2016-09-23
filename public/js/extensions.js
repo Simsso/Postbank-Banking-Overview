@@ -193,7 +193,7 @@ Number.prototype.pad = function(size) {
     return s;
 }
 
-Number.prototype.formatMoney = function(c, d, t) {
+Number.prototype.formatMoney = function(c, d, t, sign) { // s = sign
 	var n = this, 
 		c = isNaN(c = Math.abs(c)) ? 2 : c, 
 		d = d == undefined ? "," : d, 
@@ -201,7 +201,7 @@ Number.prototype.formatMoney = function(c, d, t) {
 		s = n < 0 ? "-" : "", 
 		i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
 		j = (j = i.length) > 3 ? j % 3 : 0;
-	return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+	return ((sign && this >= 0) ? '+' : '') + s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
 
 // maps a value from two bounds to another two

@@ -20,9 +20,10 @@
 			return;
 		}
 
-		var filteredTransactions = transactionDataProcessing.filterByDateRange(transactions, dateRange.getDateRange());
+		var filteredTransactions = transactionDataProcessing.filterByDateRange(transactions, dateRange.getDateRange()),
+			previousTime = transactionDataProcessing.filterByDateRange(transactions, dateRange.getPrevDateRange());
 
-		ui.renderData(filteredTransactions);
+		ui.renderData(filteredTransactions, previousTime);
 		chart.showBalanceChart(filteredTransactions, true);
 	}
 
