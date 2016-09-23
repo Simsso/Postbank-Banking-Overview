@@ -167,3 +167,11 @@ td.hidden-row .hidden-content {
 .green {
     color: green;
 }
+
+.development.green::after {
+    content: ' ▲';
+}
+
+.development.red::after {
+    content: ' ▼';
+}
