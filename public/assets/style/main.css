@@ -94,6 +94,19 @@ main, section, header {
 }
 
 
+.key-number .development {
+    font-size: 120%;
+}
+
+.key-number .development.green::after {
+    content: ' ▲';
+}
+
+.key-number .development.red::after {
+    content: ' ▼';
+}
+
+
 footer {
 	text-align: center;
 	padding: 25px;
@@ -166,12 +179,4 @@ td.hidden-row .hidden-content {
 
 .green {
     color: green;
-}
-
-.development.green::after {
-    content: ' ▲';
-}
-
-.development.red::after {
-    content: ' ▼';
 }

@@ -3,6 +3,7 @@ var dateRange = (function(jQuery) {
 		'week': 'Week',
 		'month': 'Month',
 		'quarter': 'Quarter',
+		'4-months': 'Four Months',
 		'year': 'Year',
 		'lifetime': 'Lifetime',
 		'custom': 'Custom range'
@@ -55,6 +56,10 @@ var dateRange = (function(jQuery) {
 				dateRange.from = dateFns.startOfQuarter(currentDate);
 				dateRange.till = dateFns.endOfQuarter(currentDate);
 				break;
+			case '4-months':
+				dateRange.from = dateFns.subMonths(dateFns.startOfMonth(currentDate), 3);
+				dateRange.till = dateFns.endOfMonth(currentDate);
+				break;
 			case 'year':
 				dateRange.from = dateFns.startOfYear(currentDate);
 				dateRange.till = dateFns.endOfYear(currentDate);
@@ -91,6 +96,10 @@ var dateRange = (function(jQuery) {
 				range.from = dateFns.subQuarters(dateRange.from, 1);
 				range.till = dateFns.endOfQuarter(dateFns.subQuarters(dateRange.till, 1));
 				break;
+			case '4-months':
+				range.from = dateFns.subMonths(dateFns.startOfMonth(dateRange.from), 4);
+				range.till = dateFns.endOfMonth(dateFns.subMonths(dateRange.till, 4));
+				break;
 			case 'year':
 				range.from = dateFns.subYears(dateRange.from, 1);
 				range.till = dateFns.endOfYear(dateFns.subYears(dateRange.till, 1));
@@ -117,6 +126,10 @@ var dateRange = (function(jQuery) {
 			case 'quarter':
 				range.from = dateFns.addQuarters(dateRange.from, 1);
 				range.till = dateFns.endOfQuarter(dateFns.addQuarters(dateRange.till, 1));
+				break;
+			case '4-months':
+				range.from = dateFns.addMonths(dateFns.startOfMonth(dateRange.from), 4);
+				range.till = dateFns.endOfMonth(dateFns.addMonths(dateRange.till, 4));
 				break;
 			case 'year':
 				range.from = dateFns.addYears(dateRange.from, 1);

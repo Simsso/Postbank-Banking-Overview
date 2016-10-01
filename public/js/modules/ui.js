@@ -46,9 +46,9 @@ var ui = (function(jQuery) {
 	}
 
 	function resetKeyNumberDevelopment() {
-		divBalanceValueDevelopment.html('');
-		divTransactionVolumeValueDevelopment.html('');
-		divSurplusValueDevelopment.html('');
+		divBalanceValueDevelopment.html('').removeClass('red').removeClass('green');
+		divTransactionVolumeValueDevelopment.html('').removeClass('red').removeClass('green');
+		divSurplusValueDevelopment.html('').removeClass('red').removeClass('green');
 	}
 
 	function renderTable(data) {
@@ -84,6 +84,14 @@ var ui = (function(jQuery) {
 			switch (dateRange.getSelectedRangeWidth()) {
 				case 'month':
 					text = dateFns.format(newDateRange.from, 'MMM YYYY');
+					break;
+				case '4-months':
+					text = dateFns.format(newDateRange.from, 'MMM ' + 
+						((dateFns.getYear(newDateRange.from) === dateFns.getYear(newDateRange.till)) ? // start and end same year
+							'' : 
+							'YYYY')) + 
+						' - ' + 
+						dateFns.format(newDateRange.till, 'MMM YYYY');
 					break;
 				case 'quarter':
 					text = dateFns.format(newDateRange.from, 'Qo YYYY')

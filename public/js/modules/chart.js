@@ -9,6 +9,8 @@ var chart = (function(Chart) {
 				return 'week';
 			case 'quarter':
 				return 'month';
+			case '4-months':
+				return 'month';
 			case 'year':
 				return 'quarter';
 			case 'lifetime':
