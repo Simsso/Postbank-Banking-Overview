@@ -2,7 +2,8 @@ nav {
     position: relative;
     display: block;
     height: 70px;
-    border-bottom: 1px solid rgba(1, 1, 102, 0.36);
+    /*border-bottom: 1px solid rgba(1, 1, 102, 0.36);*/
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.26);
     background-color: rgb(255, 204, 1);
 }
 

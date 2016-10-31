@@ -14,10 +14,12 @@
   ],
   "author": "Timo Denk",
   "license": "ISC",
+  "repository": "https://github.com/Simsso/Postbank-Banking-Overview",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "fs": "0.0.2",
+    "mastercard-merchant-identifier": "^1.0.2",
     "path": "^0.12.7",
     "windows-1252": "^0.1.2"
   }
