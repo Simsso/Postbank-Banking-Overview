@@ -54,6 +54,11 @@ header .selected-date-range-info {
     white-space: nowrap;
 }
 
+.table > tbody > tr.light-border > td:not(.hidden-row) {
+    border-top-color: #EFF3F9;
+    border-top-style: dotted;
+}
+
 .table > tbody > tr > td:last-child {
 	border-right: none;
 }
@@ -175,7 +180,7 @@ td.hidden-row .hidden-content {
 }
 
 .red {
-    color: red;
+    color: #FF000A;
 }
 
 .green {

@@ -56,21 +56,23 @@ var ui = (function(jQuery) {
 		var tableBodyHtml = '';
 
 		for (var i = 0; i < data.length; i++) {
-			var transaction = data[i];
-			tableBodyHtml += '<tr data-toggle="collapse" data-target="#main-table-row-expand-' + i + '" class="accordion-toggle">' + 
-				'<td class="tnum">' + dateFns.format(transaction['ValueDate'], 'DD. MMM YYYY') + '</td>' +
-				'<td>' + transaction['ExchangeType'] + '</td>' +
-				'<td>' + transaction['Applicant'] + '</td>' +
-				'<td>' + transaction['Recipient'] + '</td>' +
-				'<td class="tnum text-right">' + transaction['Amount'].formatMoney() + '</td>' +
-				'<td class="tnum text-right">' + transaction['Balance'].formatMoney() + '</td>' +
+			var transaction = data[i], previous = (i > 0) ? data[i - 1] : null;
+			var sameDayAsPreviousTransaction = (i > 0 && dateFns.differenceInDays(transaction['ValueDate'], previous['ValueDate']) === 0);
+			tableBodyHtml += '<tr data-toggle="collapse" data-target="#main-table-row-expand-' + i + '" ' +
+						'class="accordion-toggle' + (sameDayAsPreviousTransaction ? ' light-border' : '') + '">' + 
+					'<td class="tnum">' + dateFns.format(transaction['ValueDate'], 'DD. MMM YYYY') + '</td>' +
+					'<td>' + transaction['ExchangeType'] + '</td>' +
+					'<td>' + transaction['Applicant'] + '</td>' +
+					'<td>' + transaction['Recipient'] + '</td>' +
+					'<td class="tnum text-right' +  ((transaction['Amount'] < 0) ? ' red' : '') + '">' + transaction['Amount'].formatMoney() + '</td>' +
+					'<td class="tnum text-right">' + transaction['Balance'].formatMoney() + '</td>' +
 				'</tr>' + 
 				'<tr>'  + 
-    			'<td colspan="6" class="hidden-row">' + 
-        		'<div class="accordion-body collapse" id="main-table-row-expand-' + i + '">' + 
-        		'<div class="hidden-content"><span class="details">Details</span>' + transaction['Details'] + '</div>' + 
-        		'</div>' + 
-    			'</td>' + 
+	    			'<td colspan="6" class="hidden-row">' + 
+	        		'<div class="accordion-body collapse" id="main-table-row-expand-' + i + '">' + 
+	        		'<div class="hidden-content"><span class="details">Details</span>' + transaction['Details'] + '</div>' + 
+	        		'</div>' + 
+	    			'</td>' + 
 				'</tr>';
 		}
 
