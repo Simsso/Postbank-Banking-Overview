@@ -47,7 +47,14 @@ Transaction.prototype.parseString = function(string) {
 };
 
 Transaction.prototype.equals = function(transaction) {
+	if (this['Amount'] === 189 && this['Balance'] === transaction['Balance']) {
+		console.log(transaction);
+		console.log(this);
+	}
 	for (attr in transaction) {
+		if (['Balance'].indexOf(attr) !== -1) {
+			continue;
+		}
 		if (this[attr] !== transaction[attr]) {
 			return false;
 		}

@@ -43,7 +43,7 @@ var fileParser = (function() {
 					var newTransaction = new Transaction();
 					var parseErr = newTransaction.parseString(line)
 					if (parseErr) {
-						console.log(parseErr)
+						//console.log(parseErr)
 						continue;
 					}
 					transactions.push(newTransaction);
