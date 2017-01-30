@@ -64,7 +64,7 @@ var ui = (function(jQuery) {
 					'<td>' + transaction['ExchangeType'] + '</td>' +
 					'<td>' + transaction['Applicant'] + '</td>' +
 					'<td>' + transaction['Recipient'] + '</td>' +
-					'<td class="tnum text-right' +  ((transaction['Amount'] < 0) ? ' red' : '') + '">' + transaction['Amount'].formatMoney() + '</td>' +
+					'<td class="tnum text-right' +  ((transaction['Amount'] < 0) ? ' red' : '') + '">' + ((transaction['Amount'] < 0) ? "- " : "+ ") + ((transaction['Amount'] < 0) ? -transaction['Amount'] : transaction['Amount']).formatMoney() + '</td>' +
 					'<td class="tnum text-right">' + transaction['Balance'].formatMoney() + '</td>' +
 				'</tr>' + 
 				'<tr>'  + 
