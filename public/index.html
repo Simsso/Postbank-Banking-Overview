@@ -28,17 +28,17 @@
               </span>
               <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu">
-              <li><a href="#week">Week</a></li>
-              <li><a href="#month">Month</a></li>
-              <li><a href="#quarter">Quarter</a></li>
-              <li><a href="#4-months">Four months</a></li>
-              <li><a href="#year">Year</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#lifetime">Lifetime</a></li>
-              <li role="separator" class="divider"></li>
-              <li class="disabled"><a href="#custom">Custom range</a></li>
-            </ul>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#week">Week</a>
+              <a class="dropdown-item" href="#month">Month</a>
+              <a class="dropdown-item" href="#quarter">Quarter</a>
+              <a class="dropdown-item" href="#4-months">Four months</a>
+              <a class="dropdown-item" href="#year">Year</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#lifetime">Lifetime</a>
+              <div class="dropdown-divider"></div>
+              <a class="disabled dropdown-item" href="#custom">Custom range</a>
+            </div>
           </div>
 
           <button id="next-date-range" type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
@@ -110,6 +110,7 @@
     </footer>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/date-fns/dist/date_fns.min.js"></script>
     <script src="bower_components/moment/min/moment.min.js"></script>

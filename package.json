@@ -2,7 +2,7 @@
   "name": "postbank-banking-overview",
   "version": "0.1.0",
   "description": "Postbank Banking Overview is an app that gives an overview about the transactions after parsing the .csv files.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

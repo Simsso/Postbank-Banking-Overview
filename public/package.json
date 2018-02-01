@@ -2,7 +2,7 @@
   "name": "postbank-banking-overview",
   "version": "0.1.0",
   "description": "Postbank Banking Overview is an app that gives an overview about the transactions after parsing the .csv files.",
-  "main": "app.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,11 +12,13 @@
     "transactions",
     "app"
   ],
+  "repository": "https://github.com/Simsso/Postbank-Banking-Overview",
   "author": "Timo Denk",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "chart.js": "^2.2.0-rc.2",
-    "jquery": "^2.2.4"
+    "bootstrap": "^4.0.0",
+    "chart.js": "^2.7.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9"
   }
 }
