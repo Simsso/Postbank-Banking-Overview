@@ -27,7 +27,5 @@
 		chart.showBalanceChart(filteredTransactions, true);
 	}
 
-	events.on('selected-date-range-change', function() {
-		renderData();
-	});
+	events.on('selected-date-range-change', renderData);
 })();
